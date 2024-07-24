@@ -4,6 +4,7 @@ import com.restaurant.app.repository.AdminRestaurantFoodItemRepo;
 import com.restaurant.app.retaurant.FoodItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -12,13 +13,12 @@ public class AdminServiceImpl implements AdminService{
     AdminRestaurantFoodItemRepo adminRestaurantFoodItemRepo;
 
 
-    public String addNewItemService(FoodItem item){
-        adminRestaurantFoodItemRepo.insert(item);
-        return "Item is Added Successfully";
+    public Mono<Object> addNewItemService(FoodItem item){
+       return Mono.fromSupplier(() ->adminRestaurantFoodItemRepo.insert(item));
     }
 
-    public String removeFoodItem(String itemId) {
+    public Mono<String> removeFoodItem(String itemId) {
         adminRestaurantFoodItemRepo.deleteById(itemId);
-        return "Item deleted Successfully";
+        return Mono.fromSupplier(() -> "Item deleted Successfully");
     }
 }

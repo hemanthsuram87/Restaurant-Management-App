@@ -2,11 +2,12 @@ package com.restaurant.app.service;
 
 import com.restaurant.app.retaurant.FoodItem;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 
 public interface AdminService {
 
-    String addNewItemService(FoodItem item);
+    Mono<Object> addNewItemService(FoodItem item);
 
-    public String removeFoodItem(String itemId);
+    public Mono<String> removeFoodItem(String itemId);
 }
