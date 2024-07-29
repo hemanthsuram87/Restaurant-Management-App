@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+
 public interface RestaurantFoodItemRepository extends MongoRepository<FoodItem,String> {
 List<FoodItem> findAll();
 
